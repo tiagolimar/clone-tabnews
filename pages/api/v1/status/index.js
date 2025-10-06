@@ -1,5 +1,6 @@
-export default function status(request, response) {
-  response
-    .status(200)
-    .json("Ei! Você que está lendo, obrigado por esquentar o meu coração! <3");
+import database from "../../../../infra/database.js";
+
+export default async function status(request, response) {
+  const result = await database.query("SELECT 1+1 as sum;").rows;
+  response.status(200).json(result);
 }
